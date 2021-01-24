@@ -1,0 +1,2 @@
+# 450_DataStructure_and_Algorithm_Questions
+450 Data Structures and Algorithms Questions - A complete list to Learn and Practice Data Structures. We can say a first step to move to Competitive Programming. Once the basics of Data Structure and Algorithms will be strong, one can start building Projects and start contributing to Open Source Projects. Lots of choices will be there also it will help during the placements and interviews.
