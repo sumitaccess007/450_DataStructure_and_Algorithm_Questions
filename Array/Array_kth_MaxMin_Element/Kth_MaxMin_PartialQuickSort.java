@@ -14,40 +14,40 @@ public class Kth_MaxMin_PartialQuickSort {
 		printArrayElements("Array elements are - ", array, arraySize);
 		printKValue(k+"th smallest and largest element to find.");
 		
-		int smallest = kthSmallestElement(array, 0, arraySize-1, k);
-		System.out.println(k+"th Smallest element is - "+smallest);
+		int largest = kthSmallestElement(array, arraySize, 0, arraySize-1, k);
+		System.out.println(k+"th Largest element is - "+largest);
 
 	}
 	
-	private static int kthSmallestElement(Integer[] array, int left, int right, int k) {
-		System.out.println("1. Outside IF - Left and Right is - ("+left+", "+right+", "+k);
-		if(k > 0 && k <= right-left+1){ // If k is smaller than the number of elements
-			System.out.println("2. Calling Partition - left, Right and k is - ("+left+", "+right+", "+k);
+	private static int kthSmallestElement(Integer[] array, int arraySize, int left, int right, int k) {
+		while(left <= right){
+			//System.out.println("1. Outside IF - Left and Right is - ("+left+", "+right+", "+k);
+			//if(k > 0 && k <= right-left+1){ // If k is smaller than the number of elements
+			//System.out.println("2. Calling Partition - left, Right and k is - ("+left+", "+right+", "+k);
 			int positionOfPivot = partition(array, left, right);
-			System.out.println("positionOfPivot - "+positionOfPivot);
+			//System.out.println("positionOfPivot - "+positionOfPivot);
 			
-			if(positionOfPivot+1 == k){
-				System.out.println("Found");
+			if(positionOfPivot == arraySize-k){
+				//System.out.println("Found");
 				return array[positionOfPivot];
-			}
-			
-			if(positionOfPivot+1 > k){
-				System.out.println("IF");
+			} else if(positionOfPivot > arraySize-k){
+				//System.out.println("IF");
 				//return kthSmallestElement(array, left, positionOfPivot-1, k);
-				return kthSmallestElement(array, 0, right, k);
+				//return kthSmallestElement(array, 0, right, k);
+				right = positionOfPivot-1;
 			} else {
-				System.out.println("ELSE");
+				//System.out.println("ELSE");
 				//return kthSmallestElement(array, positionOfPivot+1, right, k-positionOfPivot-1);
-				return kthSmallestElement(array, 0, right, k-positionOfPivot-1);
+				//return kthSmallestElement(array, 0, right, k-positionOfPivot-1);
+				left = positionOfPivot+1;
 			}
-			
 		}
-		return array[k];
+		return -1;
 	}
 
 	private static int partition(Integer[] array, int left, int right) {
 		int pivot = array[right];
-		System.out.println("Left is - "+left+" Right is - "+right+" Pivot is - "+pivot);
+		//System.out.println("Left is - "+left+" Right is - "+right+" Pivot is - "+pivot);
 		int i = left;
 		for(int j=left; j<=right-1; j++){
 			if(array[j] <= pivot){
@@ -57,11 +57,11 @@ public class Kth_MaxMin_PartialQuickSort {
 				i++;
 			}
 		}
-		printArrayElements("1. In Between Array Tracking - ", array, array.length);
+		//printArrayElements("1. In Between Array Tracking - ", array, array.length);
 		int temp = array[i];
 		array[i] = array[right];
 		array[right] = temp;
-		printArrayElements("2. In Between Array Tracking - ", array, array.length);
+		//printArrayElements("2. In Between Array Tracking - ", array, array.length);
 		
 		return i;
 	}
